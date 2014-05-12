@@ -27,9 +27,9 @@ public class InsertData {
     public void insert(String ID, String Taetigkeit) {
 
         try {
-            //Load class into memory
+            
             Class.forName(jdbcClassName);
-            //Establish connection
+            
             connection = DriverManager.getConnection(url, user, password);
 
         } catch (ClassNotFoundException | SQLException e) {
