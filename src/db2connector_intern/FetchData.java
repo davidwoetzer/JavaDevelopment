@@ -1,4 +1,3 @@
-
 package db2connector_intern;
 
 import static db2connector_intern.Main.jdbcClassName;
@@ -25,7 +24,6 @@ public class FetchData {
 
     public void _fetchData() {
 
-        //System.setOut(new PrintStream(new FileOutputStream("d:\\db2_con\\COMPLETE_SYS_OUT.txt")));
         ResultSet rs_result;
         ResultSet rs_insert;
 
@@ -35,28 +33,22 @@ public class FetchData {
 
         Connection connection = null;
         try {
-            //Load class into memory
+
             Class.forName(jdbcClassName);
-            //Establish connection
+
             connection = DriverManager.getConnection(url, user, password);
 
         } catch (ClassNotFoundException | SQLException e) {
         } finally {
             if (connection != null) {
-                System.out.println("Connection established.");
 
                 try {
                     stmt = connection.createStatement();
-                    System.out.println("Created JDBC Statement object");
 
-                    // Execute a query and generate a ResultSet instance
                     rs_result = stmt.executeQuery("SELECT PROF_KEY, PROF_VALUE FROM EMPINST.PROFILE_EXTENSIONS WHERE PROF_PROPERTY_ID='taetigkeit'");
-
-                    System.out.println("Created JDBC ResultSet object");
 
                     result_list = new ArrayList<>();
 
-                    // Print all of the employee numbers to standard output device
                     while (rs_result.next()) {
 
                         result_list.add(rs_result.getString(1)); //ID
@@ -75,22 +67,14 @@ public class FetchData {
 
                     }
                     System.out.println(result_list);
-                    System.out.println("Fetched all rows from JDBC ResultSet");
-                    // Close the ResultSet
+
                     rs_result.close();
-                    System.out.println("Closed JDBC ResultSet");
 
-                    // Close the Statement
                     stmt.close();
-                    System.out.println("Closed JDBC Statement");
 
-                    // Connection must be on a unit-of-work boundary to allow close
                     connection.commit();
-                    System.out.println("Transaction committed");
 
-                    // Close the connection
                     connection.close();
-                    System.out.println("Disconnected from data source");
 
                 } catch (SQLException e) {
                 }
