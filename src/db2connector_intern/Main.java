@@ -19,7 +19,6 @@ import java.util.List;
 public class Main {
 
     static final String jdbcClassName = "com.ibm.db2.jcc.DB2Driver";
-    // static final String url = "jdbc:db2://contest.lappdomain.lappgroup.com:50000/PEOPLEDB";
     static final String url = "jdbc:db2://IPADDRESS:50000/PEOPLEDB";
     static final String user = "db2admin";
     static final String password = "PASSWORD";
